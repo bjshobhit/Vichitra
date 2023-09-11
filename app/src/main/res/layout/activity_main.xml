@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <ImageView
+        android:id="@+id/logo_actMain"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_transparent_with_name" />
+
+    <soup.neumorphism.NeumorphTextView
+        android:id="@+id/enternumber"
+        style="@style/Widget.Neumorph.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Select Your Country Code and Enter Your Phone Number "
+        android:textColor="#004791"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_actMain"
+        app:neumorph_lightSource="leftTop"
+        app:neumorph_shadowColorDark="#FFFFFF"
+        app:neumorph_shadowColorLight="#FFFFFF" />
+
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/countrycode"
+        android:layout_width="136dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="40dp"
+        app:ccp_autoDetectCountry="true"
+        app:ccp_countryPreference="IN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enternumber" />
+
+    <EditText
+        android:id="@+id/phonenumber"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:hint="Enter Your Phone Number"
+        android:maxLength="10"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countrycode" />
+
+    <soup.neumorphism.NeumorphButton
+        android:id="@+id/sendotpbutton"
+        style="@style/Widget.Neumorph.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:shadowColor="#006674"
+        android:text="Submit"
+        android:textColor="#004791"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phonenumber"
+        app:neumorph_backgroundColor="#00B0DF"
+        app:neumorph_lightSource="leftTop"
+        app:neumorph_shadowColorDark="#006674"
+        app:neumorph_shadowElevation="4dp" />
+
+    <ProgressBar
+        android:id="@+id/progressbarofmain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendotpbutton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "146626003808",
+    "firebase_url": "https://vichitra-a3c42-default-rtdb.firebaseio.com",
+    "project_id": "vichitra-a3c42",
+    "storage_bucket": "vichitra-a3c42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146626003808:android:3cb46b1bc47df1678b1405",
+        "android_client_info": {
+          "package_name": "com.jainshobhit.vichitra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146626003808-pejr3edj3epvlr31jsqhgr9slj6id1pr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEErehfxSAeekEJZp6MrfLki8vpz1I3h4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146626003808-pejr3edj3epvlr31jsqhgr9slj6id1pr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
