@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -66,6 +67,8 @@ public class OTP_Authentication extends AppCompatActivity {
                     mprogressbarofotpauth.setVisibility(View.VISIBLE);
                     String coderecieved=getIntent().getStringExtra("otp");
                     PhoneAuthCredential credential= PhoneAuthProvider.getCredential(coderecieved,enteredotp);
+                    Log.d("login", "code recieved : "+coderecieved);
+                    Log.d("login", "entered otp : "+ enteredotp);
                     signInWithPhoneAuthCredential(credential);
 
                 }
@@ -81,8 +84,10 @@ public class OTP_Authentication extends AppCompatActivity {
                 if(task.isSuccessful())
                 {
                     mprogressbarofotpauth.setVisibility(View.INVISIBLE);
+                    Log.d("login", "Login success");
                     Toast.makeText(getApplicationContext(),"Login sucess",Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(OTP_Authentication.this,SetupProfile.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     finish();
                 }
@@ -91,6 +96,7 @@ public class OTP_Authentication extends AppCompatActivity {
                     if(task.getException() instanceof FirebaseAuthInvalidCredentialsException)
                     {
                         mprogressbarofotpauth.setVisibility(View.INVISIBLE);
+                        Log.d("login", "Login failed");
                         Toast.makeText(getApplicationContext(),"Login Failed",Toast.LENGTH_SHORT).show();
                     }
                 }

@@ -10,14 +10,17 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -61,6 +64,7 @@ public class SetupProfile extends AppCompatActivity {
 
         firebaseAuth=FirebaseAuth.getInstance();
         firebaseFirestore=FirebaseFirestore.getInstance();
+        firebaseStorage = FirebaseStorage.getInstance();
         storageReference=firebaseStorage.getReference();
         firebaseFirestore=FirebaseFirestore.getInstance();
 
@@ -90,11 +94,14 @@ public class SetupProfile extends AppCompatActivity {
                 else {
 
                     mprogressbarofsetupprofile.setVisibility(View.VISIBLE);
+
                     sendDataForNewuser();
                     mprogressbarofsetupprofile.setVisibility((View.INVISIBLE));
                     Intent intent=new Intent(SetupProfile.this,ChatActivity.class);
                     startActivity(intent);
                     finish();
+
+
                 }
             }
         });
@@ -117,13 +124,12 @@ public class SetupProfile extends AppCompatActivity {
 
         name=mgetusername.getText().toString().trim();
         FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference=firebaseDatabase.getReference("Users").child(firebaseAuth.getUid());
+        DatabaseReference databaseReference=firebaseDatabase.getReference("Users/").child(firebaseAuth.getUid());
 
         Map<String, String> muserprofile = new HashMap<>();
         muserprofile.put("username",name);
         muserprofile.put("userUID",firebaseAuth.getUid());
         databaseReference.setValue(muserprofile);
-        Toast.makeText(this, "User Profile Added Successfully", Toast.LENGTH_SHORT).show();
         sendImagetoStorage();
 
     }
@@ -148,23 +154,21 @@ public class SetupProfile extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         ImageUriAcessToken=uri.toString();
-                        Toast.makeText(SetupProfile.this, "URI get success", Toast.LENGTH_SHORT).show();
                         sendDataTocloudFirestore();
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(SetupProfile.this, "URI get failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SetupProfile.this, "Some Error Occurred!!", Toast.LENGTH_SHORT).show();
                     }
                 });
-                Toast.makeText(SetupProfile.this, "Image is Uploaded", Toast.LENGTH_SHORT).show();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(SetupProfile.this, "Image not Uploaded", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SetupProfile.this, "Some Error Occurred!!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -178,13 +182,7 @@ public class SetupProfile extends AppCompatActivity {
         userdata.put("uid",firebaseAuth.getUid());
         userdata.put("status","Online");
 
-        documentReference.set(userdata).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(SetupProfile.this, "Data on Cloud firestore send Success", Toast.LENGTH_SHORT).show();
-
-            }
-        });
+        documentReference.set(userdata);
 
     }
 }

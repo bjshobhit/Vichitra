@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 public class SplashScreen extends AppCompatActivity {
 
     @Override
@@ -23,5 +25,11 @@ public class SplashScreen extends AppCompatActivity {
                 finish();
             }
         },3000);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 }
