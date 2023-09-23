@@ -5,68 +5,125 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SetupProfile">
-    <soup.neumorphism.NeumorphTextView
-        android:id="@+id/neumorphTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="casual"
-        android:shadowColor="#00B0DF"
-        android:text="Setup Your profile"
-        android:textColor="#004791"
-        android:textSize="30sp"
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarofsetupprofile"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/splash_gradient"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:fontFamily="serif"
+            android:text="Setup Your Profile"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </androidx.appcompat.widget.Toolbar>
+
+<!--    <soup.neumorphism.NeumorphTextView-->
+<!--        android:id="@+id/neumorphTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_marginTop="72dp"-->
+<!--        android:fontFamily="serif"-->
+<!--        android:shadowColor="#00B0DF"-->
+<!--        android:text="Setup Your profile"-->
+<!--        android:textColor="#004791"-->
+<!--        android:textSize="30sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/getuserimage"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
+        android:elevation="230dp"
         app:cardCornerRadius="130dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/neumorphTextView" >
+        app:layout_constraintTop_toBottomOf="@+id/toolbarofsetupprofile">
 
         <ImageView
+            android:id="@+id/getuserimageinimageview"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:id="@+id/getuserimageinimageview"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/ic_launcher_background" />
 
     </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:id="@+id/getusername"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="64dp"
-        android:hint="Enter Your Name Here"
-        android:inputType="textCapWords"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getuserimage" />
+    <!--    <EditText-->
+<!--        android:id="@+id/getusername"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="64dp"-->
+<!--        android:hint="Enter Your Name Here"-->
+<!--        android:inputType="textCapWords"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.497"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/getuserimage" />-->
 
-    <soup.neumorphism.NeumorphButton
-        android:id="@+id/setupprofile"
-        style="@style/Widget.Neumorph.Button"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:shadowColor="#006674"
-        android:text="Setup Profile"
-        android:textColor="#004791"
+        android:layout_gravity="center"
+        android:layout_marginTop="64dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/getusername"
-        app:neumorph_backgroundColor="#00B0DF"
-        app:neumorph_lightSource="leftTop"
-        app:neumorph_shadowColorDark="#006674"
-        app:neumorph_shadowElevation="4dp" />
+        app:layout_constraintTop_toBottomOf="@+id/getuserimage">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_baseline_pencil_outline_24" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="290dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            app:boxCornerRadiusBottomEnd="5dp"
+            app:boxCornerRadiusBottomStart="5dp"
+            app:boxCornerRadiusTopEnd="5dp"
+            app:boxCornerRadiusTopStart="5dp">
+
+
+            <EditText
+                android:id="@+id/getusername"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:layout_marginTop="15dp"
+                android:hint="Enter Your Name"
+                android:inputType="textPersonName"
+                android:maxLength="20" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/setupprofile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/splash_gradient"
+        android:shadowColor="#006674"
+        android:text="Setup Profile"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <ProgressBar
         android:id="@+id/progressbarofprofilesetup"

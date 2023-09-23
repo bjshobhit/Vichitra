@@ -1,5 +1,6 @@
 package com.jainshobhit.vichitra;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -11,8 +12,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
@@ -64,6 +67,30 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        int id = item.getItemId();
+        if(id==R.id.profile) {
+            Intent intent = new Intent(ChatActivity.this, ProfileActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+        if (id==R.id.settings){
+            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (id==R.id.logout){
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(ChatActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            return true;
+        }
+            return super.onOptionsItemSelected(item);
 
     }
     @Override

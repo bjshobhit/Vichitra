@@ -2,6 +2,7 @@ package com.jainshobhit.vichitra;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ import soup.neumorphism.NeumorphButton;
 
 public class MainActivity extends AppCompatActivity {
     EditText mgetphonenumber;
-    NeumorphButton msendotp;
+    AppCompatButton msendotp;
     CountryCodePicker mcountrycodepicker;
     String countrycode;
     String phonenumber;

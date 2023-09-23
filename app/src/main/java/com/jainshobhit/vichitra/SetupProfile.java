@@ -3,6 +3,7 @@ package com.jainshobhit.vichitra;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
@@ -45,7 +46,7 @@ public class SetupProfile extends AppCompatActivity {
 
     private EditText mgetusername;
 
-    private NeumorphButton msetupprofile;
+    private AppCompatButton msetupprofile;
 
     private FirebaseAuth firebaseAuth;
     private String name;
@@ -184,5 +185,10 @@ public class SetupProfile extends AppCompatActivity {
 
         documentReference.set(userdata);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "You Can not Go Back At this Stage", Toast.LENGTH_SHORT).show();
     }
 }

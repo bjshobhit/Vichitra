@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#00B0DF"
+        android:background="@drawable/splash_gradient"
         android:id="@+id/toolbar">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,9 +23,10 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="9dp"
                 android:text="VICHITRA"
-                android:textColor="#004791"
+                android:textColor="#fff"
                 android:textSize="32sp"
-                android:textStyle="bold|italic" />
+                android:fontFamily="serif"
+                android:textStyle="italic" />
 
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
@@ -36,11 +37,11 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_below="@+id/toolbar"
         android:layout_marginTop="0dp"
-        android:backgroundTint="#00B0DF"
+        android:background="@drawable/splash_gradient"
         app:tabIndicatorColor="@color/white"
         app:tabIndicatorHeight="3dp"
         app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="#004791">
+        app:tabTextColor="#fff">
 
 
         <com.google.android.material.tabs.TabItem
