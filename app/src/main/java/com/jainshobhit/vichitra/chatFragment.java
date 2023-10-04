@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -60,7 +61,14 @@ public class chatFragment extends Fragment {
                 noteViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getActivity(), "New Chat", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getActivity(), "New Chat", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(), SpecificChat.class);
+                        intent.putExtra("name", firebasemodel.getName());
+                        intent.putExtra("recieveruid",firebasemodel.getUid());
+                        intent.putExtra("recieverprofile",firebasemodel.getImage());
+                        intent.putExtra("recieverstatus",firebasemodel.getStatus());
+                        startActivity(intent);
+
                     }
                 });
             }
@@ -99,7 +107,9 @@ public class chatFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        chatAdapter.startListening();
+        if (chatAdapter != null) {
+            chatAdapter.startListening();
+        }
     }
 
     @Override
