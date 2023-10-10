@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ public class chatFragment extends Fragment {
         firebaseFirestore= FirebaseFirestore.getInstance();
         mrecyclerview=v.findViewById(R.id.recyclerview);
 
-        Query query=firebaseFirestore.collection("Users");
+        Query query=firebaseFirestore.collection("Users").whereNotEqualTo("uid",firebaseAuth.getUid());
         FirestoreRecyclerOptions<firebasemodel> allusername=new FirestoreRecyclerOptions.Builder<firebasemodel>().setQuery(query,firebasemodel.class).build();
 
         chatAdapter=new FirestoreRecyclerAdapter<firebasemodel, NoteViewHolder>(allusername){
@@ -67,7 +68,10 @@ public class chatFragment extends Fragment {
                         intent.putExtra("recieveruid",firebasemodel.getUid());
                         intent.putExtra("recieverprofile",firebasemodel.getImage());
                         intent.putExtra("recieverstatus",firebasemodel.getStatus());
-                        startActivity(intent);
+                        ActivityOptions options =
+                                ActivityOptions.makeCustomAnimation(getActivity(), R.anim.slide_up, R.anim.alpha);
+                        startActivity(intent,options.toBundle());
+                        getActivity().finish();
 
                     }
                 });
@@ -107,6 +111,7 @@ public class chatFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid()).update("status","Online");
         if (chatAdapter != null) {
             chatAdapter.startListening();
         }
@@ -115,6 +120,8 @@ public class chatFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+        FirebaseFirestore.getInstance().collection("Users").document(FirebaseAuth.getInstance().getUid()).update("status","Offline");
+
         if(chatAdapter!=null)
         {
             chatAdapter.stopListening();
